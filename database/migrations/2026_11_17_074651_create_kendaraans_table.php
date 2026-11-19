@@ -1,0 +1,28 @@
+
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('kendaraan', function (Blueprint $table) {
+            $table->id('id_kendaraan');
+            $table->string('no_plat', 15)->unique();
+            $table->enum('jenis_kendaraan', ['Matic', 'Manual Transmisi']);
+            $table->string('no_stnk', 30);
+            $table->year('tahun_pembuatan');
+            $table->string('nama_pemilik', 100);
+            $table->string('warna', 30);
+            $table->timestamps();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('kendaraan');
+    }
+};
